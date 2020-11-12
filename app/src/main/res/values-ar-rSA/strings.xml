@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">زوراء فارما</string>
+    <string name="field_req">الحقل مطلوب</string>
+    <string name="notifications">الإشعارات</string>
+    <string name="wait">انتظر</string>
+    <string name="secrt_code">الرمز السري</string>
+    <string name="login">دخول</string>
+    <string name="next">التالي</string>
+    <string name="ok">حسنا</string>
+    <string name="choose_language"><![CDATA[إختر <font color="#F61C00">اللغة</font>]]></string>
+
+</resources>

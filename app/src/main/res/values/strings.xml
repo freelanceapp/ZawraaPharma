@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Zawraa Pharma</string>
+    <string name="field_req">Field required</string>
+    <string name="notifications">Notifications</string>
+    <string name="wait">Wait</string>
+    <string name="secrt_code">Secret Code</string>
+    <string name="login">Login</string>
+    <string name="next">Next</string>
+    <string name="ok">Ok</string>
+    <string name="choose_language"><![CDATA[Choose <font color="#F61C00">Language</font>]]></string>
+
+</resources>
