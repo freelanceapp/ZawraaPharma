@@ -1,4 +1,4 @@
-package com.zawraapharma.mvp.activity_home_mvp;
+package com.zawraapharma.mvp.activity_Find_pharmacy_mvp;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -8,17 +8,18 @@ import androidx.fragment.app.FragmentManager;
 
 import com.zawraapharma.R;
 import com.zawraapharma.models.UserModel;
+import com.zawraapharma.mvp.activity_home_mvp.HomeActivityView;
 import com.zawraapharma.preferences.Preferences;
 
 
-public class ActivityHomePresenter {
+public class ActivityFindPharmacyPresenter {
     private Context context;
     private FragmentManager fragmentManager;
-    private HomeActivityView view;
+    private FindPharmacyActivityView view;
     private Preferences preference;
     private UserModel userModel;
 
-    public ActivityHomePresenter(Context context, HomeActivityView view) {
+    public ActivityFindPharmacyPresenter(Context context, FindPharmacyActivityView view) {
         this.context = context;
         this.fragmentManager = fragmentManager;
         this.view = view;
@@ -27,28 +28,13 @@ public class ActivityHomePresenter {
 
     }
 
-    public void pillPay() {
-        view.onNavigateToPillPayActivity();
 
 
-    }
 
-    public void findPharmacy() {
-        view.onNavigateToFindPharmacyActivity();
-
-
-    }
-    public void debtDisclosure() {
-        view.onNavigateToDebtDisclosureActivity();
-
-
-    }
     public void backPress(){
-            if (userModel==null){
-                view.onNavigateToLoginActivity();
-            }else {
+
                 view.onFinished();
-            }
+
 
     }
 }

@@ -24,7 +24,7 @@ import com.zawraapharma.mvp.activity_splash_mvp.SplashPresenter;
 import com.zawraapharma.mvp.activity_splash_mvp.SplashView;
 import com.zawraapharma.preferences.Preferences;
 import com.zawraapharma.ui.activity_home.HomeActivity;
-import com.zawraapharma.ui.activity_language.LanguageActivity;
+import com.zawraapharma.ui.activity_login.LoginActivity;
 
 import io.paperdb.Paper;
 
@@ -64,8 +64,8 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
 
 
     @Override
-    public void onNavigateToLanguageActivity() {
-        Intent intent = new Intent(this, LanguageActivity.class);
+    public void onNavigateToLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 

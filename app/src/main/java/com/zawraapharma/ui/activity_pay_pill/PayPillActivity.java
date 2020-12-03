@@ -1,10 +1,8 @@
-package com.zawraapharma.ui.activity_home;
+package com.zawraapharma.ui.activity_pay_pill;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,22 +13,22 @@ import androidx.fragment.app.FragmentManager;
 
 import com.zawraapharma.R;
 import com.zawraapharma.databinding.ActivityHomeBinding;
+import com.zawraapharma.databinding.ActivityPayBillBinding;
 import com.zawraapharma.language.Language;
 import com.zawraapharma.mvp.activity_home_mvp.ActivityHomePresenter;
 import com.zawraapharma.mvp.activity_home_mvp.HomeActivityView;
-import com.zawraapharma.ui.activity_dept_disclosure.DebtDisclosureActivity;
-import com.zawraapharma.ui.activity_find_pharmacy.FindPharmacyActivity;
+import com.zawraapharma.mvp.activity_pay_pill_mvp.ActivityPayPillPresenter;
+import com.zawraapharma.mvp.activity_pay_pill_mvp.PayPillActivityView;
 import com.zawraapharma.ui.activity_login.LoginActivity;
-import com.zawraapharma.ui.activity_pay_pill.PayPillActivity;
 
 import java.util.List;
 
 import io.paperdb.Paper;
 
-public class HomeActivity extends AppCompatActivity implements HomeActivityView {
-    private ActivityHomeBinding binding;
+public class PayPillActivity extends AppCompatActivity implements PayPillActivityView {
+    private ActivityPayBillBinding binding;
     private FragmentManager fragmentManager;
-    private ActivityHomePresenter presenter;
+    private ActivityPayPillPresenter presenter;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -41,7 +39,7 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityView 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_pay_bill);
         initView();
     }
 
@@ -49,25 +47,8 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityView 
 
     private void initView() {
         fragmentManager = getSupportFragmentManager();
-        presenter = new ActivityHomePresenter(this, this);
-        binding.llBillPay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.pillPay();
-            }
-        });
-        binding.llFindPharmacy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.findPharmacy();
-            }
-        });
-        binding.llDebtDisclosure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.debtDisclosure();
-            }
-        });
+        presenter = new ActivityPayPillPresenter(this, this);
+
 
     }
 
@@ -98,34 +79,6 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityView 
 
 
 
-    @Override
-    public void onNavigateToLoginActivity() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        finish();
-
-    }
-
-    @Override
-    public void onNavigateToPillPayActivity() {
-        Intent intent = new Intent(this, PayPillActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    @Override
-    public void onNavigateToFindPharmacyActivity() {
-        Intent intent = new Intent(this, FindPharmacyActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    @Override
-    public void onNavigateToDebtDisclosureActivity() {
-        Intent intent = new Intent(this, DebtDisclosureActivity.class);
-        startActivity(intent);
-        finish();
-    }
 
     @Override
     public void onFinished() {

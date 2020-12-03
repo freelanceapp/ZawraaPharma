@@ -29,7 +29,7 @@ public class SplashPresenter {
             if (userSettingsModel!=null&&userSettingsModel.isLanguageSelected()){
                 view.onNavigateToHomeActivity();
             }else {
-                view.onNavigateToLanguageActivity();
+                view.onNavigateToLoginActivity();
 
             }
 
