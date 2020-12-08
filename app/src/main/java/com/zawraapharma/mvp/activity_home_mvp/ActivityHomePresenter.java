@@ -43,6 +43,11 @@ public class ActivityHomePresenter {
 
 
     }
+    public void calender() {
+        view.onNavigateToCalenderActivity();
+
+
+    }
     public void backPress(){
             if (userModel==null){
                 view.onNavigateToLoginActivity();

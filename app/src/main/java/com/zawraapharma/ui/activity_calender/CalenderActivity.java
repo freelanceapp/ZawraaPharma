@@ -1,4 +1,4 @@
-package com.zawraapharma.ui.activity_dept_disclosure;
+package com.zawraapharma.ui.activity_calender;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,18 +11,20 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.events.calendar.views.EventsCalendar;
 import com.zawraapharma.R;
-import com.zawraapharma.databinding.ActivityDebtDisclosureBinding;
+import com.zawraapharma.databinding.ActivityCalenderBinding;
 import com.zawraapharma.language.Language;
 import com.zawraapharma.mvp.activity_calender.ActivityCalenderPresenter;
 import com.zawraapharma.mvp.activity_calender.CalenderActivityView;
 
+import java.util.Calendar;
 import java.util.List;
 
 import io.paperdb.Paper;
 
-public class DebtDisclosureActivity extends AppCompatActivity implements CalenderActivityView {
-    private ActivityDebtDisclosureBinding binding;
+public class CalenderActivity extends AppCompatActivity implements CalenderActivityView, EventsCalendar.Callback {
+    private ActivityCalenderBinding binding;
     private FragmentManager fragmentManager;
     private ActivityCalenderPresenter presenter;
 
@@ -35,7 +37,7 @@ public class DebtDisclosureActivity extends AppCompatActivity implements Calende
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_debt_disclosure);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_calender);
         initView();
     }
 
@@ -79,5 +81,20 @@ public class DebtDisclosureActivity extends AppCompatActivity implements Calende
     @Override
     public void onFinished() {
         finish();
+    }
+
+    @Override
+    public void onDayLongPressed(Calendar calendar) {
+
+    }
+
+    @Override
+    public void onDaySelected(Calendar calendar) {
+
+    }
+
+    @Override
+    public void onMonthChanged(Calendar calendar) {
+
     }
 }

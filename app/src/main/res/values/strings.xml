@@ -12,7 +12,7 @@
     <string name="Find_pharmacy_location">Find a pharmacy location</string>
     <string name="Debt_disclosure">Debt disclosure</string>
     <string name="Appointments">Appointments</string>
-    <string name="search">بحث</string>
-    <string name="no_search_results">لا يوجد نتائج بحث</string>
-    <string name="search_bill">البحث عن أسم الصيدلية - المذخر او من خلال رقم الفاتورة</string>
+    <string name="search">Search</string>
+    <string name="no_search_results">No search results</string>
+    <string name="search_bill">Search for the name of the pharmacy - storekeeper or by the invoice number</string>
 </resources>

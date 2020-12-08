@@ -1,18 +1,17 @@
-package com.zawraapharma.mvp.activity_debt_disclosure_mvp;
+package com.zawraapharma.mvp.activity_calender;
 
 import android.content.Context;
-
 import com.zawraapharma.models.UserModel;
 import com.zawraapharma.preferences.Preferences;
 
 
-public class ActivityDebtDisclosurePresenter {
+public class ActivityCalenderPresenter {
     private Context context;
-    private DebtDisclosureActivityView view;
+    private CalenderActivityView view;
     private Preferences preference;
     private UserModel userModel;
 
-    public ActivityDebtDisclosurePresenter(Context context, DebtDisclosureActivityView view) {
+    public ActivityCalenderPresenter(Context context, CalenderActivityView view) {
         this.context = context;
         this.view = view;
         preference = Preferences.getInstance();

@@ -18,6 +18,7 @@ import com.zawraapharma.databinding.ActivityHomeBinding;
 import com.zawraapharma.language.Language;
 import com.zawraapharma.mvp.activity_home_mvp.ActivityHomePresenter;
 import com.zawraapharma.mvp.activity_home_mvp.HomeActivityView;
+import com.zawraapharma.ui.activity_calender.CalenderActivity;
 import com.zawraapharma.ui.activity_dept_disclosure.DebtDisclosureActivity;
 import com.zawraapharma.ui.activity_find_pharmacy.FindPharmacyActivity;
 import com.zawraapharma.ui.activity_login.LoginActivity;
@@ -68,6 +69,12 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityView 
                 presenter.debtDisclosure();
             }
         });
+        binding.llCalender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.calender();
+            }
+        });
 
     }
 
@@ -116,6 +123,13 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityView 
     @Override
     public void onNavigateToFindPharmacyActivity() {
         Intent intent = new Intent(this, FindPharmacyActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onNavigateToCalenderActivity() {
+        Intent intent = new Intent(this, CalenderActivity.class);
         startActivity(intent);
         finish();
     }
