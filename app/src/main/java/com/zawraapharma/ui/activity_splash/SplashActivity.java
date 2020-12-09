@@ -44,15 +44,6 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-
-            Transition transition = new TransitionSet();
-            transition.setInterpolator(new LinearInterpolator());
-            transition.setDuration(500);
-            getWindow().setEnterTransition(transition);
-            getWindow().setExitTransition(transition);
-
-        }
         binding = DataBindingUtil.setContentView(this,R.layout.activity_splash);
         initView();
     }
@@ -67,12 +58,14 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
     public void onNavigateToLoginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
     public void onNavigateToHomeActivity() {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
+        finish();
     }
 
 

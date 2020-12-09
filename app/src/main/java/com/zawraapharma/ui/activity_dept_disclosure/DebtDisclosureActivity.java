@@ -23,8 +23,8 @@ import io.paperdb.Paper;
 
 public class DebtDisclosureActivity extends AppCompatActivity implements CalenderActivityView {
     private ActivityDebtDisclosureBinding binding;
-    private FragmentManager fragmentManager;
     private ActivityCalenderPresenter presenter;
+    private String lang;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -42,30 +42,16 @@ public class DebtDisclosureActivity extends AppCompatActivity implements Calende
 
 
     private void initView() {
-        fragmentManager = getSupportFragmentManager();
+        Paper.init(this);
+        lang = Paper.book().read("lang","ar");
         presenter = new ActivityCalenderPresenter(this, this);
-
+        binding.setLang(lang);
+        binding.llBack.setOnClickListener(view ->finish());
 
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        List<Fragment> fragments = fragmentManager.getFragments();
-        for (Fragment fragment : fragments) {
-            fragment.onActivityResult(requestCode, resultCode, data);
-        }
-    }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        List<Fragment> fragments = fragmentManager.getFragments();
-        for (Fragment fragment : fragments) {
-            fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-    }
 
 
     @Override

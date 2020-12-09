@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.zawraapharma.R;
 import com.zawraapharma.databinding.ActivityHomeBinding;
-import com.zawraapharma.databinding.ActivityPayBillBinding;
+import com.zawraapharma.databinding.ActivityPayPillBinding;
 import com.zawraapharma.language.Language;
 import com.zawraapharma.mvp.activity_home_mvp.ActivityHomePresenter;
 import com.zawraapharma.mvp.activity_home_mvp.HomeActivityView;
@@ -26,8 +26,7 @@ import java.util.List;
 import io.paperdb.Paper;
 
 public class PayPillActivity extends AppCompatActivity implements PayPillActivityView {
-    private ActivityPayBillBinding binding;
-    private FragmentManager fragmentManager;
+    private ActivityPayPillBinding binding;
     private ActivityPayPillPresenter presenter;
 
     @Override
@@ -39,37 +38,19 @@ public class PayPillActivity extends AppCompatActivity implements PayPillActivit
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_pay_bill);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_pay_pill);
         initView();
     }
 
 
 
     private void initView() {
-        fragmentManager = getSupportFragmentManager();
         presenter = new ActivityPayPillPresenter(this, this);
-
+        binding.llBack.setOnClickListener(view -> presenter.backPress());
 
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        List<Fragment> fragments = fragmentManager.getFragments();
-        for (Fragment fragment : fragments) {
-            fragment.onActivityResult(requestCode, resultCode, data);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        List<Fragment> fragments = fragmentManager.getFragments();
-        for (Fragment fragment : fragments) {
-            fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-    }
 
 
     @Override

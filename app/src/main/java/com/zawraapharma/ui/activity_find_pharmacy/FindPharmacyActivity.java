@@ -28,7 +28,7 @@ public class FindPharmacyActivity extends AppCompatActivity implements FindPharm
     private ActivityFindPharmacyBinding binding;
     private FragmentManager fragmentManager;
     private ActivityFindPharmacyPresenter presenter;
-
+    private String lang;
     @Override
     protected void attachBaseContext(Context newBase) {
         Paper.init(newBase);
@@ -45,9 +45,12 @@ public class FindPharmacyActivity extends AppCompatActivity implements FindPharm
 
 
     private void initView() {
+        Paper.init(this);
+        lang = Paper.book().read("lang","ar");
+        binding.setLang(lang);
         fragmentManager = getSupportFragmentManager();
         presenter = new ActivityFindPharmacyPresenter(this, this);
-
+        binding.llBack.setOnClickListener(view -> presenter.backPress());
 
     }
 

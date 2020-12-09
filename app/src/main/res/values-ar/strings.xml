@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">زوراء</string>
+    <string name="field_req">الحقل مطلوب</string>
+    <string name="notifications">الاشعارات</string>
+    <string name="wait">إنتظر قليلا...</string>
+    <string name="secrt_code">الرمز السري</string>
+    <string name="login">دخول</string>
+    <string name="next">التالي</string>
+    <string name="ok">حسنا!</string>
+    <string name="choose_language"><![CDATA[إختر <font color="#F61C00">اللغة</font>]]></string>
+    <string name="Pay_the_bill">تسديد فاتورة</string>
+    <string name="Find_pharmacy_location">البحث عن مكان صيدلية</string>
+    <string name="Debt_disclosure">كشف ديون</string>
+    <string name="Appointments">مواعيد</string>
+    <string name="search">بحث</string>
+    <string name="no_search_results">لا توجد نتائج بحث</string>
+    <string name="search_bill">البحث عن اسم الصيدلية- المذخر او من خلال رقم الفاتورة</string>
+    <string name="map_api_key">asd</string>
+    <string name="retrieve_an_invoice">إسترجاع فاتورة</string>
+    <string name="payment_date">موعد التسديد</string>
+    <string name="dept">القسم</string>
+    <string name="inv">رقم الفاتورة</string>
+    <string name="date">التاريخ</string>
+    <string name="remain">المتبقي</string>
+    <string name="amount">المبلغ المسدد</string>
+    <string name="total_amount">إجمالي المبلغ:</string>
+    <string name="discount">الخصم:</string>
+    <string name="amount2">المبلغ الصافى:</string>
+    <string name="notes">ملاحظات:</string>
+    <string name="back">خروج</string>
+    <string name="show">إظهار الفاتورة</string>
+    <string name="search_by_invoice_number">البحث برقم الفاتورة...</string>
+    <string name="choose_company">إختيار الشركة</string>
+    <string name="search_result">نتيجة البحث</string>
+    <string name="product">المنتج</string>
+    <string name="retrieve_amount">الكمية المسترجعة</string>
+    <string name="select_date">حدد التاريخ</string>
+    <string name="save">حفظ</string>
+    <string name="select">إختر</string>
+    <string name="cancel">إلغاء</string>
+    <string name="filter">تصفية</string>
+    <string name="pharmacy_name">إسم الصيدلية</string>
+    <string name="debt">الدين</string>
+</resources>

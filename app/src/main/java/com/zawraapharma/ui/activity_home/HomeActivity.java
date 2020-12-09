@@ -23,6 +23,7 @@ import com.zawraapharma.ui.activity_dept_disclosure.DebtDisclosureActivity;
 import com.zawraapharma.ui.activity_find_pharmacy.FindPharmacyActivity;
 import com.zawraapharma.ui.activity_login.LoginActivity;
 import com.zawraapharma.ui.activity_pay_pill.PayPillActivity;
+import com.zawraapharma.ui.activity_pharmacy_details.PharmacyDetailsActivity;
 
 import java.util.List;
 
@@ -30,7 +31,6 @@ import io.paperdb.Paper;
 
 public class HomeActivity extends AppCompatActivity implements HomeActivityView {
     private ActivityHomeBinding binding;
-    private FragmentManager fragmentManager;
     private ActivityHomePresenter presenter;
 
     @Override
@@ -49,53 +49,16 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityView 
 
 
     private void initView() {
-        fragmentManager = getSupportFragmentManager();
         presenter = new ActivityHomePresenter(this, this);
-        binding.llBillPay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.pillPay();
-            }
-        });
-        binding.llFindPharmacy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.findPharmacy();
-            }
-        });
-        binding.llDebtDisclosure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.debtDisclosure();
-            }
-        });
-        binding.llCalender.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.calender();
-            }
-        });
+        binding.llBillPay.setOnClickListener(view -> presenter.pillPay());
+        binding.llFindPharmacy.setOnClickListener(view -> presenter.findPharmacy());
+        binding.llDebtDisclosure.setOnClickListener(view -> presenter.debtDisclosure());
+        binding.llCalender.setOnClickListener(view -> presenter.calender());
 
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        List<Fragment> fragments = fragmentManager.getFragments();
-        for (Fragment fragment : fragments) {
-            fragment.onActivityResult(requestCode, resultCode, data);
-        }
-    }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        List<Fragment> fragments = fragmentManager.getFragments();
-        for (Fragment fragment : fragments) {
-            fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-    }
 
 
     @Override
@@ -115,30 +78,26 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityView 
 
     @Override
     public void onNavigateToPillPayActivity() {
-        Intent intent = new Intent(this, PayPillActivity.class);
+        Intent intent = new Intent(this, PharmacyDetailsActivity.class);
         startActivity(intent);
-        finish();
     }
 
     @Override
     public void onNavigateToFindPharmacyActivity() {
         Intent intent = new Intent(this, FindPharmacyActivity.class);
         startActivity(intent);
-        finish();
     }
 
     @Override
     public void onNavigateToCalenderActivity() {
         Intent intent = new Intent(this, CalenderActivity.class);
         startActivity(intent);
-        finish();
     }
 
     @Override
     public void onNavigateToDebtDisclosureActivity() {
         Intent intent = new Intent(this, DebtDisclosureActivity.class);
         startActivity(intent);
-        finish();
     }
 
     @Override

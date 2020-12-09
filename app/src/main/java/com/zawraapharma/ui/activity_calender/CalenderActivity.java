@@ -11,7 +11,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.events.calendar.views.EventsCalendar;
 import com.zawraapharma.R;
 import com.zawraapharma.databinding.ActivityCalenderBinding;
 import com.zawraapharma.language.Language;
@@ -23,7 +22,7 @@ import java.util.List;
 
 import io.paperdb.Paper;
 
-public class CalenderActivity extends AppCompatActivity implements CalenderActivityView, EventsCalendar.Callback {
+public class CalenderActivity extends AppCompatActivity implements CalenderActivityView {
     private ActivityCalenderBinding binding;
     private FragmentManager fragmentManager;
     private ActivityCalenderPresenter presenter;
@@ -76,25 +75,8 @@ public class CalenderActivity extends AppCompatActivity implements CalenderActiv
     }
 
 
-
-
     @Override
     public void onFinished() {
         finish();
-    }
-
-    @Override
-    public void onDayLongPressed(Calendar calendar) {
-
-    }
-
-    @Override
-    public void onDaySelected(Calendar calendar) {
-
-    }
-
-    @Override
-    public void onMonthChanged(Calendar calendar) {
-
     }
 }
