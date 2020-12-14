@@ -41,4 +41,7 @@
     <string name="filter">Filter</string>
     <string name="pharmacy_name">Pharmacy name</string>
     <string name="debt">Debt</string>
+    <string name="user_not_found">User Not Found</string>
+    <string name="failed">Failed</string>
+
 </resources>

@@ -85,6 +85,7 @@
                     android:src="@drawable/ic_lock"/>
 
                 <EditText
+                    android:id="@+id/edtAccessCode"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:singleLine="true"
@@ -95,8 +96,8 @@
                     android:hint="@string/secrt_code"
                     android:textColorHint="@color/gray4"
                     android:background="@color/transparent"
-                    android:text="@={model.secret_code}"
-                    error="@{model.error_secret_code}"
+                    android:text="@={model.access_code}"
+                    error="@{model.error_access_code}"
                     />
 
 

@@ -20,8 +20,7 @@ public class UserModel implements Serializable {
         private String name;
         private String email;
         private String city;
-        private String phone_code;
-        private String phone;
+        private String access_code;
         private String image;
         private String logo;
         private String token;
@@ -35,11 +34,10 @@ public class UserModel implements Serializable {
         public User() {
         }
 
-        public User(int id, String name, String phone_code, String phone, String logo, String token) {
+        public User(int id, String name, String access_code, String logo, String token) {
             this.id = id;
             this.name = name;
-            this.phone_code = phone_code;
-            this.phone = phone;
+            this.access_code = access_code;
             this.logo = logo;
             this.token = token;
         }
@@ -60,12 +58,9 @@ public class UserModel implements Serializable {
             return city;
         }
 
-        public String getPhone_code() {
-            return phone_code;
-        }
 
-        public String getPhone() {
-            return phone;
+        public String getAccess_code() {
+            return access_code;
         }
 
         public String getImage() {

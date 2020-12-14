@@ -41,4 +41,7 @@
     <string name="filter">تصفية</string>
     <string name="pharmacy_name">إسم الصيدلية</string>
     <string name="debt">الدين</string>
+    <string name="user_not_found">User Not Found</string>
+    <string name="failed">يوجد مشكله وجارى العمل عليها </string>
+
 </resources>
