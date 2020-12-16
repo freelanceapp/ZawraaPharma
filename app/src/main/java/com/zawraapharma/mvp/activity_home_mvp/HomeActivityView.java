@@ -7,4 +7,6 @@ public interface HomeActivityView {
     void onNavigateToCalenderActivity();
     void onNavigateToDebtDisclosureActivity();
     void onFinished();
+    void onFailed(String msg);
+    void onLogoutSuccess();
 }

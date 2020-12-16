@@ -39,13 +39,5 @@ public class LoginModel extends BaseObservable implements Serializable {
         notifyPropertyChanged(BR.access_code);
 
     }
-/* @Bindable
-    public String getAccess_code() {
-        return access_code;
-    }
 
-    public void setAccess_code(String access_code) {
-        this.access_code = access_code;
-
-    }*/
 }

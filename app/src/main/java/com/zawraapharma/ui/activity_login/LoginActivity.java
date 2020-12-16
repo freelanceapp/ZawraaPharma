@@ -30,7 +30,6 @@ public class LoginActivity extends AppCompatActivity implements ActivityLoginVie
     private LoginModel model;
     private ActivityLoginPresenter presenter;
     private double lat=0.0,lng=0.0;
-    private ProgressDialog dialog;
     private Preferences preferences;
 
     @Override
@@ -58,8 +57,7 @@ public class LoginActivity extends AppCompatActivity implements ActivityLoginVie
         model = new LoginModel();
         binding.tv1.setText(Html.fromHtml(getString(R.string.login)));
         binding.setModel(model);
-        Log.e("nnnnn",binding.edtAccessCode.getText().toString());
-        presenter = new ActivityLoginPresenter(this,this,model.getAccess_code());
+        presenter = new ActivityLoginPresenter(this,this);
         binding.btnLogin.setOnClickListener(view -> {
             presenter.checkData(model);
         });
@@ -77,12 +75,7 @@ public class LoginActivity extends AppCompatActivity implements ActivityLoginVie
 
     }*/
 
-    @Override
-    public void onLoad() {
-        dialog = Common.createProgressDialog(this, getString(R.string.wait));
-        dialog.setCancelable(false);
-        dialog.show();
-    }
+
 
     @Override
     public void onUserFound(UserModel userModel) {
@@ -99,25 +92,10 @@ public class LoginActivity extends AppCompatActivity implements ActivityLoginVie
     }
 
     @Override
-    public void onFailed() {
-        Toast.makeText(LoginActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onServer() {
-        Toast.makeText(LoginActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
-
-    }
-
-
-    @Override
-    public void onFinishload() {
-        dialog.dismiss();
-    }
-
-    @Override
-    public void onnotconnect(String msg) {
+    public void onFailed(String msg) {
         Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
-
     }
+
+
+
 }

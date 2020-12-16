@@ -38,18 +38,18 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
     @Override
     protected void attachBaseContext(Context newBase) {
         Paper.init(newBase);
-        super.attachBaseContext(Language.updateResources(newBase,Paper.book().read("lang","ar")));
+        super.attachBaseContext(Language.updateResources(newBase, Paper.book().read("lang", "ar")));
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_splash);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
         initView();
     }
 
     private void initView() {
-        presenter = new SplashPresenter(this,this);
+        presenter = new SplashPresenter(this, this);
         preferences = Preferences.getInstance();
     }
 
@@ -70,20 +70,20 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
 
 
     private void refreshActivity(String lang) {
-        new Handler(Looper.getMainLooper()).postDelayed(()->{
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
             Paper.init(this);
-            Paper.book().write("lang",lang);
-            Language.updateResources(this,lang);
+            Paper.book().write("lang", lang);
+            Language.updateResources(this, lang);
             UserSettingsModel model = preferences.getUserSettings(this);
-            if (preferences.getUserSettings(this)==null){
+            if (preferences.getUserSettings(this) == null) {
                 model = new UserSettingsModel();
             }
             model.setLanguageSelected(true);
-            preferences.create_update_user_settings(this,model);
+            preferences.create_update_user_settings(this, model);
             Intent intent = getIntent();
             finish();
             startActivity(intent);
-        },1500);
+        }, 1500);
 
 
     }
@@ -91,7 +91,7 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==100&&resultCode==RESULT_OK&&data!=null){
+        if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
             String lang = data.getStringExtra("lang");
             refreshActivity(lang);
         }

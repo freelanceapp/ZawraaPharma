@@ -1,10 +1,12 @@
 package com.zawraapharma.ui.activity_home;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,8 +18,10 @@ import androidx.fragment.app.FragmentManager;
 import com.zawraapharma.R;
 import com.zawraapharma.databinding.ActivityHomeBinding;
 import com.zawraapharma.language.Language;
+import com.zawraapharma.location_service.LocationService;
 import com.zawraapharma.mvp.activity_home_mvp.ActivityHomePresenter;
 import com.zawraapharma.mvp.activity_home_mvp.HomeActivityView;
+import com.zawraapharma.tags.Tags;
 import com.zawraapharma.ui.activity_calender.CalenderActivity;
 import com.zawraapharma.ui.activity_dept_disclosure.DebtDisclosureActivity;
 import com.zawraapharma.ui.activity_find_pharmacy.FindPharmacyActivity;
@@ -54,9 +58,22 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityView 
         binding.llFindPharmacy.setOnClickListener(view -> presenter.findPharmacy());
         binding.llDebtDisclosure.setOnClickListener(view -> presenter.debtDisclosure());
         binding.llCalender.setOnClickListener(view -> presenter.calender());
+        binding.llLogout.setOnClickListener(view -> presenter.logout());
+        startUpdateLocation();
 
     }
 
+
+
+    private void startUpdateLocation() {
+        Intent intent = new Intent(this, LocationService.class);
+        startService(intent);
+    }
+
+    private void stopUpdateLocation() {
+        Intent intent = new Intent(this, LocationService.class);
+        stopService(intent);
+    }
 
 
 
@@ -70,6 +87,7 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityView 
 
     @Override
     public void onNavigateToLoginActivity() {
+
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
@@ -103,5 +121,23 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityView 
     @Override
     public void onFinished() {
         finish();
+    }
+
+    @Override
+    public void onFailed(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onLogoutSuccess() {
+        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        if (manager!=null){
+            manager.cancel(Tags.not_tag,Tags.not_id);
+        }
+
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+        stopUpdateLocation();
     }
 }

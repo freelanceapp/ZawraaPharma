@@ -26,7 +26,7 @@ public class SplashPresenter {
     private void delaySplash(){
         new Handler().postDelayed(()->{
 
-            if (userSettingsModel!=null&&userSettingsModel.isLanguageSelected()){
+            if (userModel!=null){
                 view.onNavigateToHomeActivity();
             }else {
                 view.onNavigateToLoginActivity();

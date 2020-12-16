@@ -1,142 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
-    <LinearLayout
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.activity_home.HomeActivity"
-        android:orientation="vertical"
         android:background="@drawable/home_bg"
+        android:orientation="vertical"
         android:padding="10dp"
-        >
-        <LinearLayout
-        android:id="@+id/llBillPay"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="horizontal"
-        android:background="@drawable/back"
-        >
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_dept"
-            android:padding="10dp"
-            app:layout_constraintStart_toStartOf="@id/tv1"
-            app:layout_constraintTop_toBottomOf="@id/tv1"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true"
+        tools:context=".ui.activity_home.HomeActivity">
 
-            />
-        <TextView
-            android:id="@+id/tv1"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/gray9"
-            android:textSize="22sp"
-            android:layout_gravity="center"
-            android:text="@string/Pay_the_bill"
-            android:paddingStart="40dp"
-            android:paddingEnd="40dp"
-            android:lines="1"
-
-            />
-
-    </LinearLayout>
-        <LinearLayout
-            android:id="@+id/llFindPharmacy"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:orientation="horizontal"
-            android:background="@drawable/back"
+            android:orientation="vertical"
             >
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_search"
-                android:padding="10dp"
-                app:layout_constraintStart_toStartOf="@id/tv1"
-                app:layout_constraintTop_toBottomOf="@id/tv1"
+            <LinearLayout
+                android:id="@+id/llBillPay"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@drawable/back"
+                android:orientation="horizontal">
 
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/gray9"
-                android:textSize="22sp"
-                android:layout_gravity="center"
-                android:text="@string/Find_pharmacy_location"
-                android:paddingStart="40dp"
-                android:paddingEnd="40dp"
-                android:lines="1"
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_dept"
+                    app:layout_constraintStart_toStartOf="@id/tv1"
+                    app:layout_constraintTop_toBottomOf="@id/tv1"
+                    android:layout_gravity="center_vertical"
 
-                />
+                    />
+
+                <TextView
+                    android:id="@+id/tv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:lines="1"
+                    android:paddingStart="40dp"
+                    android:paddingEnd="40dp"
+                    android:text="@string/Pay_the_bill"
+                    android:textColor="@color/gray9"
+                    android:textSize="22sp"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llFindPharmacy"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@drawable/back"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_search"
+
+                    app:layout_constraintStart_toStartOf="@id/tv1"
+                    app:layout_constraintTop_toBottomOf="@id/tv1"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:lines="1"
+                    android:paddingStart="40dp"
+                    android:paddingEnd="40dp"
+                    android:text="@string/Find_pharmacy_location"
+                    android:textColor="@color/gray9"
+                    android:textSize="22sp"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llCalender"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@drawable/back"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_appointement"
+                    app:layout_constraintStart_toStartOf="@id/tv1"
+                    app:layout_constraintTop_toBottomOf="@id/tv1"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:lines="1"
+                    android:paddingStart="40dp"
+                    android:paddingEnd="40dp"
+                    android:text="@string/Appointments"
+                    android:textColor="@color/gray9"
+                    android:textSize="22sp"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDebtDisclosure"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@drawable/back"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_dept"
+                    app:layout_constraintStart_toStartOf="@id/tv1"
+                    app:layout_constraintTop_toBottomOf="@id/tv1"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:lines="1"
+                    android:paddingStart="40dp"
+                    android:paddingEnd="40dp"
+                    android:text="@string/Debt_disclosure"
+                    android:textColor="@color/gray9"
+                    android:textSize="22sp"
+
+                    />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/rounded_white"
+
+                >
+                <LinearLayout
+                    android:id="@+id/llLogout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    >
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_logout"
+                        app:tint="@color/color6"
+                        app:layout_constraintStart_toStartOf="@id/tv1"
+                        app:layout_constraintTop_toBottomOf="@id/tv1"
+
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:lines="1"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:text="@string/logout"
+                        android:textColor="@color/black"
+                        android:textSize="22sp"
+
+                        />
+
+                </LinearLayout>
+
+            </FrameLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/llCalender"
 
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:orientation="horizontal"
-            android:background="@drawable/back"
-            >
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_appointement"
-                android:padding="10dp"
-                app:layout_constraintStart_toStartOf="@id/tv1"
-                app:layout_constraintTop_toBottomOf="@id/tv1"
-
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/gray9"
-                android:textSize="22sp"
-                android:layout_gravity="center"
-                android:text="@string/Appointments"
-                android:paddingStart="40dp"
-                android:paddingEnd="40dp"
-                android:lines="1"
-
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llDebtDisclosure"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:orientation="horizontal"
-            android:background="@drawable/back"
-            >
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_dept"
-                android:padding="10dp"
-                app:layout_constraintStart_toStartOf="@id/tv1"
-                app:layout_constraintTop_toBottomOf="@id/tv1"
-
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/gray9"
-                android:textSize="22sp"
-                android:layout_gravity="center"
-                android:text="@string/Debt_disclosure"
-                android:paddingStart="40dp"
-                android:paddingEnd="40dp"
-                android:lines="1"
-
-                />
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 </layout>

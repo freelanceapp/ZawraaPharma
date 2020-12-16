@@ -6,6 +6,7 @@ import java.util.List;
 public class UserModel implements Serializable {
 
     private User data;
+    private int status;
 
     public User getData() {
         return data;
@@ -104,6 +105,22 @@ public class UserModel implements Serializable {
         }
 
 
+        public String getUser_type() {
+            return user_type;
+        }
 
+        public void setLatitude(String latitude) {
+            this.latitude = latitude;
+        }
+
+        public void setLongitude(String longitude) {
+            this.longitude = longitude;
+        }
+
+
+    }
+
+    public int getStatus() {
+        return status;
     }
 }

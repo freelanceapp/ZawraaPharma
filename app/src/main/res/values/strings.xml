@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Zawraa Pharma</string>
+    <string name="map_api_key">AIzaSyDgWrkvQ8qLT_eu8e0CFzqmzeRvr96EmKU</string>
     <string name="field_req">Field required</string>
     <string name="notifications">Notifications</string>
     <string name="wait">Wait</string>
@@ -15,7 +16,6 @@
     <string name="search">Search</string>
     <string name="no_search_results">No search results</string>
     <string name="search_bill">Search for the name of the pharmacy - storekeeper or by the invoice number</string>
-    <string name="map_api_key">asd</string>
     <string name="retrieve_an_invoice">Retrieve an invoice</string>
     <string name="payment_date">Payment date</string>
     <string name="dept">Dept</string>
@@ -43,5 +43,7 @@
     <string name="debt">Debt</string>
     <string name="user_not_found">User Not Found</string>
     <string name="failed">Failed</string>
+    <string name="something">Check internet connection</string>
+    <string name="logout">Logout</string>
 
 </resources>

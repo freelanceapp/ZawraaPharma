@@ -1,11 +1,16 @@
 package com.zawraapharma.mvp.activity_login_presenter;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.preference.Preference;
 import android.util.Log;
 
+import com.zawraapharma.R;
 import com.zawraapharma.models.LoginModel;
 import com.zawraapharma.models.UserModel;
+import com.zawraapharma.preferences.Preferences;
 import com.zawraapharma.remote.Api;
+import com.zawraapharma.share.Common;
 import com.zawraapharma.tags.Tags;
 
 import java.io.IOException;
@@ -19,49 +24,52 @@ public class ActivityLoginPresenter {
     private Context context;
     private ActivityLoginView view;
     private LoginModel model;
-    private String access_code;
-    public ActivityLoginPresenter(Context context, ActivityLoginView view,String access_code) {
+    private Preferences preference;
+
+    public ActivityLoginPresenter(Context context, ActivityLoginView view) {
         this.context = context;
         this.view = view;
-        this.access_code = access_code;
+        preference = Preferences.getInstance();
 
     }
 
-    public void checkData(LoginModel loginModel){
+    public void checkData(LoginModel loginModel) {
         this.model = loginModel;
-        if (model.isDataValid(context)){
+        if (model.isDataValid(context)) {
             login();
         }
     }
 
     private void login() {
 
-        view.onLoad();
-        Log.e("cccccccccccccccc",access_code+"");
+        ProgressDialog dialog = Common.createProgressDialog(context, context.getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
         Api.getService(Tags.base_url)
-                .login(access_code)
+                .login(model.getAccess_code())
                 .enqueue(new Callback<UserModel>() {
                     @Override
                     public void onResponse(Call<UserModel> call, Response<UserModel> response) {
-                        view.onFinishload();
-                        if (response.isSuccessful() && response.body() != null) {
-                            //  Log.e("eeeeee", response.body().getUser().getName());
+                        dialog.dismiss();
+                        if (response.isSuccessful() &&response.body()!=null&& response.body().getStatus()==200) {
+                            preference.create_update_userdata(context,response.body());
                             view.onUserFound(response.body());
-                        } else if (response.isSuccessful() && response.body() == null) {
+                        } else if (response.isSuccessful() &&response.body()!=null&&response.body().getStatus()==404) {
                             view.onUserNoFound();
-                        }else {
+                        } else {
+                            dialog.dismiss();
                             try {
-                                Log.e("mmmmmmmmmm", response.errorBody().string());
+                                Log.e("error", response.code()+response.errorBody().string());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
 
 
                             if (response.code() == 500) {
-                                view.onServer();
-                            }  else {
-                                view.onFailed();
-                                //  Toast.makeText(VerificationCodeActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                view.onFailed("Server Error");
+                            } else {
+                                view.onFailed(context.getString(R.string.failed));
                             }
                         }
                     }
@@ -69,16 +77,15 @@ public class ActivityLoginPresenter {
                     @Override
                     public void onFailure(Call<UserModel> call, Throwable t) {
                         try {
-                            view.onFinishload();
+                            dialog.dismiss();
                             if (t.getMessage() != null) {
                                 Log.e("msg_category_error", t.getMessage() + "__");
 
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                    view.onnotconnect(t.getMessage().toLowerCase());
-                                    //  Toast.makeText(VerificationCodeActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                                    view.onFailed(context.getString(R.string.something));
+
                                 } else {
-                                    view.onFailed();
-                                    // Toast.makeText(VerificationCodeActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    view.onFailed(context.getString(R.string.failed));
                                 }
                             }
                         } catch (Exception e) {
