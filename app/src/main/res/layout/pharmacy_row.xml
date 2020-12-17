@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="model"
+            type="com.zawraapharma.models.PharmacyModel" />
+        <import type="android.view.View"/>
+    </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,6 +27,7 @@
                 android:layout_height="24dp"
                 android:src="@drawable/ic_pharma"
                 app:tint="@color/colorPrimary"
+
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -28,9 +35,10 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 android:singleLine="true"
+                android:text="@{model.title}"
 
                 />
         </LinearLayout>
@@ -40,6 +48,7 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_marginTop="5dp"
+            android:visibility='@{model.code==null?View.GONE:View.VISIBLE,default=gone}'
 
             >
             <ImageView
@@ -79,7 +88,9 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="14sp"
+                android:text="@{model.address}"
+                android:singleLine="true"
 
                 />
         </LinearLayout>

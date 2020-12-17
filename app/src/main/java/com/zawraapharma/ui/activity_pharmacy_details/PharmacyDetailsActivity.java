@@ -1,37 +1,27 @@
 package com.zawraapharma.ui.activity_pharmacy_details;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TextView;
+import android.util.Log;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.zawraapharma.R;
-import com.zawraapharma.databinding.ActivityDebtDisclosureBinding;
 import com.zawraapharma.databinding.ActivityPharmacyDetailsBinding;
 import com.zawraapharma.language.Language;
-import com.zawraapharma.mvp.activity_calender.ActivityCalenderPresenter;
+import com.zawraapharma.models.PharmacyModel;
 import com.zawraapharma.ui.activity_pay_bill.PayBillActivity;
 import com.zawraapharma.ui.activity_payment_date.PaymentDateActivity;
 import com.zawraapharma.ui.activity_retrieve_bill.RetrieveBillActivity;
-
-import java.util.List;
-import java.util.Locale;
 
 import io.paperdb.Paper;
 
@@ -39,6 +29,9 @@ public class PharmacyDetailsActivity extends AppCompatActivity implements OnMapR
     private ActivityPharmacyDetailsBinding binding;
     private String lang;
     private GoogleMap mMap;
+    private PharmacyModel pharmacyModel;
+    private float zoom = 15.0f;
+
 
 
     @Override
@@ -51,28 +44,40 @@ public class PharmacyDetailsActivity extends AppCompatActivity implements OnMapR
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pharmacy_details);
+        getDataFromIntent();
         initView();
     }
 
+    private void getDataFromIntent() {
+        Intent intent = getIntent();
+        pharmacyModel = (PharmacyModel) intent.getSerializableExtra("data");
+    }
 
 
     private void initView() {
         Paper.init(this);
         lang = Paper.book().read("lang","ar");
         binding.setLang(lang);
+        binding.setTitle(pharmacyModel.getTitle());
 
         binding.cardPayBill.setOnClickListener(view -> {
             Intent intent = new Intent(this, PayBillActivity.class);
+            intent.putExtra("data",pharmacyModel);
             startActivity(intent);
+            Log.e("sdas","yyyyy");
         });
 
         binding.cardRetrieveInvoice.setOnClickListener(view -> {
             Intent intent = new Intent(this, RetrieveBillActivity.class);
+            intent.putExtra("data",pharmacyModel);
+
             startActivity(intent);
         });
 
         binding.cardPaymentDate.setOnClickListener(view -> {
             Intent intent = new Intent(this, PaymentDateActivity.class);
+            intent.putExtra("data",pharmacyModel);
+
             startActivity(intent);
         });
 
@@ -98,13 +103,14 @@ public class PharmacyDetailsActivity extends AppCompatActivity implements OnMapR
             mMap.setTrafficEnabled(false);
             mMap.setBuildingsEnabled(false);
             mMap.setIndoorEnabled(true);
-            addMarker(new LatLng(0.0,0.0));
+            addMarker(new LatLng(Double.parseDouble(pharmacyModel.getLatitude()),Double.parseDouble(pharmacyModel.getLongitude())));
 
         }
     }
 
     private void addMarker(LatLng latLng) {
         mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).position(latLng));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 
     }
 

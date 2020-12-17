@@ -45,5 +45,9 @@
     <string name="failed">يوجد مشكله وجارى العمل عليها </string>
     <string name="something">تحقق من الاتصال بالانترنت</string>
     <string name="logout">خروج</string>
+    <string name="pharmacies">الصيدليات:</string>
+    <string name="no_data_to_show">لا توجد صيدليات لعرضها</string>
+    <string name="suc">تم بنجاح!</string>
+    <string name="paid_amount_grater">عفوا, المبلغ المسدد اكبر من المبلغ المتبقي!!</string>
 
 </resources>

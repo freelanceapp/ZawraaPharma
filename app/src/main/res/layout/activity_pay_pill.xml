@@ -161,7 +161,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
-            android:visibility="visible"
+            android:visibility="gone"
             />
 
         <TextView
@@ -172,8 +172,7 @@
             android:text="@string/no_search_results"
             android:textColor="@color/black"
             android:textSize="17sp"
-
-            android:visibility="gone" />
+            android:visibility="visible" />
     </FrameLayout>
 
 

@@ -1,11 +1,13 @@
-package com.zawraapharma.mvp.activity_pay_pill_mvp;
+package com.zawraapharma.mvp.activity_pay_bill_mvp;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.zawraapharma.R;
+import com.zawraapharma.models.InvoiceDataModel;
 import com.zawraapharma.models.PharmacyDataModel;
 import com.zawraapharma.models.UserModel;
+import com.zawraapharma.mvp.activity_pay_pill_mvp.PayPillActivityView;
 import com.zawraapharma.preferences.Preferences;
 import com.zawraapharma.remote.Api;
 import com.zawraapharma.tags.Tags;
@@ -17,13 +19,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class ActivityPayPillPresenter {
+public class ActivityPayBillPresenter {
     private Context context;
-    private PayPillActivityView view;
+    private PayBillActivityView view;
     private Preferences preference;
     private UserModel userModel;
 
-    public ActivityPayPillPresenter(Context context, PayPillActivityView view) {
+    public ActivityPayBillPresenter(Context context, PayBillActivityView view) {
         this.context = context;
         this.view = view;
         preference = Preferences.getInstance();
@@ -31,15 +33,17 @@ public class ActivityPayPillPresenter {
 
     }
 
-    public void search(String query)
+    public void getBill(String pharmacy_id)
     {
+        if (userModel==null){
+            return;
+        }
         view.onProgressShow();
-
         Api.getService(Tags.base_url)
-                .search(query)
-                .enqueue(new Callback<PharmacyDataModel>() {
+                .getPharmacyBill(userModel.getData().getToken(),pharmacy_id)
+                .enqueue(new Callback<InvoiceDataModel>() {
                     @Override
-                    public void onResponse(Call<PharmacyDataModel> call, Response<PharmacyDataModel> response) {
+                    public void onResponse(Call<InvoiceDataModel> call, Response<InvoiceDataModel> response) {
                         view.onProgressHide();
                         if (response.isSuccessful()) {
                             if (response.body() != null && response.body().getStatus() == 200 && response.body().getData() != null) {
@@ -67,7 +71,7 @@ public class ActivityPayPillPresenter {
                     }
 
                     @Override
-                    public void onFailure(Call<PharmacyDataModel> call, Throwable t) {
+                    public void onFailure(Call<InvoiceDataModel> call, Throwable t) {
                         try {
                             view.onProgressHide();
 
@@ -92,7 +96,4 @@ public class ActivityPayPillPresenter {
 
 
 
-    public void backPress(){
-        view.onFinished();
-    }
 }

@@ -96,7 +96,7 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityView 
 
     @Override
     public void onNavigateToPillPayActivity() {
-        Intent intent = new Intent(this, PharmacyDetailsActivity.class);
+        Intent intent = new Intent(this, PayPillActivity.class);
         startActivity(intent);
     }
 

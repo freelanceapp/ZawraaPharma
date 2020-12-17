@@ -1,14 +1,17 @@
-package com.zawraapharma.mvp.activity_pay_pill_mvp;
+package com.zawraapharma.mvp.activity_find_pharmacy_mvp;
 
 import com.zawraapharma.models.PharmacyModel;
 
 import java.util.List;
 
-public interface PayPillActivityView {
-    void onSuccess(List<PharmacyModel> data);
-    void onFailed(String msg);
-    void onProgressShow();
-    void onProgressHide();
+public interface FindPharmacyActivityView {
     void onFinished();
 
+    void onSuccess(List<PharmacyModel> data);
+
+    void onFailed(String msg);
+
+    void onProgressShow();
+
+    void onProgressHide();
 }

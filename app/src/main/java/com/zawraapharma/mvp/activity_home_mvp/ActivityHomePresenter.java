@@ -80,7 +80,6 @@ public class ActivityHomePresenter {
     {
         Log.e("1","d");
         if (userModel!=null){
-            Log.e("2","d");
             FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                 @Override
                 public void onComplete(@NonNull Task<InstanceIdResult> task) {

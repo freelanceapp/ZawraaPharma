@@ -45,5 +45,9 @@
     <string name="failed">Failed</string>
     <string name="something">Check internet connection</string>
     <string name="logout">Logout</string>
+    <string name="pharmacies">Pharmacies:</string>
+    <string name="no_data_to_show">No data to show</string>
+    <string name="suc">Success!</string>
+    <string name="paid_amount_grater">Paid amount is grater than remaining amount</string>
 
 </resources>

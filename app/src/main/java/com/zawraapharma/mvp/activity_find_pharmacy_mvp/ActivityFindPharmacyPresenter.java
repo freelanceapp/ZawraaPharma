@@ -1,7 +1,9 @@
-package com.zawraapharma.mvp.activity_pay_pill_mvp;
+package com.zawraapharma.mvp.activity_find_pharmacy_mvp;
 
 import android.content.Context;
 import android.util.Log;
+
+import androidx.fragment.app.FragmentManager;
 
 import com.zawraapharma.R;
 import com.zawraapharma.models.PharmacyDataModel;
@@ -17,13 +19,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class ActivityPayPillPresenter {
+public class ActivityFindPharmacyPresenter {
     private Context context;
-    private PayPillActivityView view;
+    private FindPharmacyActivityView view;
     private Preferences preference;
     private UserModel userModel;
 
-    public ActivityPayPillPresenter(Context context, PayPillActivityView view) {
+    public ActivityFindPharmacyPresenter(Context context, FindPharmacyActivityView view) {
         this.context = context;
         this.view = view;
         preference = Preferences.getInstance();
@@ -89,10 +91,10 @@ public class ActivityPayPillPresenter {
                 });
     }
 
+    public void backPress() {
 
-
-
-    public void backPress(){
         view.onFinished();
+
+
     }
 }
