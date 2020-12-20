@@ -49,5 +49,10 @@
     <string name="no_data_to_show">No data to show</string>
     <string name="suc">Success!</string>
     <string name="paid_amount_grater">Paid amount is grater than remaining amount</string>
+    <string name="payment_receipt">Payment receipt</string>
+    <string name="time">Time</string>
+    <string name="receipt_num">Receipt num #</string>
+    <string name="print">Print</string>
+    <string name="delete">Delete</string>
 
 </resources>

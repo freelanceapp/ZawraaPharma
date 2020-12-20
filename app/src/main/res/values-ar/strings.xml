@@ -49,5 +49,10 @@
     <string name="no_data_to_show">لا توجد صيدليات لعرضها</string>
     <string name="suc">تم بنجاح!</string>
     <string name="paid_amount_grater">عفوا, المبلغ المسدد اكبر من المبلغ المتبقي!!</string>
+    <string name="payment_receipt">وصل تسديد</string>
+    <string name="time">الوقت</string>
+    <string name="receipt_num">رقم الوصل #</string>
+    <string name="print">تاكيد الطباعة</string>
+    <string name="delete">حذف مع الخروج</string>
 
 </resources>

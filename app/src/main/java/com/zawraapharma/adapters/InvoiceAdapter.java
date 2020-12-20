@@ -64,7 +64,7 @@ public class InvoiceAdapter extends RecyclerView.Adapter<InvoiceAdapter.MyHolder
                 String amount = holder.binding.edtAmount.getText().toString();
                 if (!amount.isEmpty()&&model2.getRemaining()>0){
 
-                    if (Double.parseDouble(amount)>=model2.getRemaining()){
+                    if (Double.parseDouble(amount)>model2.getRemaining()){
                         activity.createAlert();
 
                     }else {

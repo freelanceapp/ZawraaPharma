@@ -85,7 +85,6 @@ public class ActivityDatePresenter implements DatePickerDialog.OnDateSetListener
         if (userModel==null){
             return;
         }
-        Log.e("sdsd",date);
         ProgressDialog dialog = Common.createProgressDialog(context,context.getString(R.string.wait));
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);

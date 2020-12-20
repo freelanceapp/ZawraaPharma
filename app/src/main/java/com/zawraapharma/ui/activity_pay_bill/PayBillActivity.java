@@ -1,13 +1,18 @@
 package com.zawraapharma.ui.activity_pay_bill;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
@@ -22,7 +27,9 @@ import com.zawraapharma.databinding.ActivityPayBillBinding;
 import com.zawraapharma.databinding.ActivityPayPillBinding;
 import com.zawraapharma.language.Language;
 import com.zawraapharma.models.BillModel;
+import com.zawraapharma.models.CartModel;
 import com.zawraapharma.models.InvoiceModel;
+import com.zawraapharma.models.LocationModel;
 import com.zawraapharma.models.PharmacyModel;
 import com.zawraapharma.mvp.activity_pay_bill_mvp.ActivityPayBillPresenter;
 import com.zawraapharma.mvp.activity_pay_bill_mvp.PayBillActivityView;
@@ -42,25 +49,27 @@ public class PayBillActivity extends AppCompatActivity implements PayBillActivit
     private ActivityPayBillPresenter presenter;
     private InvoiceAdapter adapter;
     private List<BillModel> paidBillList;
-    private double total = 0.0;
+    private double totalBill = 0.0;
+    private double total_after_discount =0.0;
     private double discount = 0;
+    private LocationModel locationModel;
 
     @Override
-    protected void attachBaseContext(Context newBase) {
+    protected void attachBaseContext(Context newBase)
+    {
         Paper.init(newBase);
         super.attachBaseContext(Language.updateResources(newBase,Paper.book().read("lang","ar")));
     }
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pay_bill);
         getDataFromIntent();
         initView();
     }
-
-
-    private void getDataFromIntent() {
+    private void getDataFromIntent()
+    {
         Intent intent = getIntent();
         pharmacyModel = (PharmacyModel) intent.getSerializableExtra("data");
     }
@@ -76,7 +85,6 @@ public class PayBillActivity extends AppCompatActivity implements PayBillActivit
         adapter = new InvoiceAdapter(invoiceModelList,this);
         binding.recView.setAdapter(adapter);
         presenter = new ActivityPayBillPresenter(this,this);
-        presenter.getBill(String.valueOf(pharmacyModel.getId()));
 
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this,R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 
@@ -106,6 +114,14 @@ public class PayBillActivity extends AppCompatActivity implements PayBillActivit
             }
         });
 
+        binding.btnBack.setOnClickListener(view -> finish());
+        binding.btnShow.setOnClickListener(view -> {
+            String note = binding.edtNote.getText().toString();
+
+            presenter.setUpData(note,paidBillList, String.valueOf(pharmacyModel.getId()),String.valueOf(totalBill),String.valueOf(discount),String.valueOf(total_after_discount),locationModel);
+        });
+
+
 
     }
 
@@ -118,6 +134,20 @@ public class PayBillActivity extends AppCompatActivity implements PayBillActivit
             adapter.notifyDataSetChanged();
 
         }
+    }
+
+    @Override
+    public void onLocationSuccess(LocationModel locationModel) {
+        this.locationModel = locationModel;
+        presenter.stopLocationUpdate();
+        presenter.getBill(String.valueOf(pharmacyModel.getId()));
+
+    }
+
+    @Override
+    public void onCartSendSuccess() {
+        Toast.makeText(this, getString(R.string.suc), Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override
@@ -153,18 +183,26 @@ public class PayBillActivity extends AppCompatActivity implements PayBillActivit
             }
         }
 
+        if (paidBillList.size()>0){
+            binding.btnShow.setVisibility(View.VISIBLE);
+            binding.space.setVisibility(View.VISIBLE);
+        }else {
+            binding.btnShow.setVisibility(View.GONE);
+            binding.space.setVisibility(View.GONE);
+        }
         calculateTotal();
     }
 
     private void calculateTotal() {
-        double totalBill = 0.0;
+        totalBill = 0.0;
+        total_after_discount =0.0;
         for (BillModel billModel:paidBillList){
             totalBill +=Double.parseDouble(billModel.getPaid_amount());
 
         }
         binding.tvTotal.setText(String.valueOf(totalBill));
-        double totalAfterDiscount = totalBill-(totalBill*(discount/100));
-        binding.tvFinalTotal.setText(String.valueOf(totalAfterDiscount));
+        total_after_discount = totalBill-(totalBill*(discount/100));
+        binding.tvFinalTotal.setText(String.valueOf(total_after_discount));
 
 
     }
@@ -184,5 +222,26 @@ public class PayBillActivity extends AppCompatActivity implements PayBillActivit
 
     public void createAlert() {
         Common.CreateDialogAlert(this,getString(R.string.paid_amount_grater));
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1255) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                presenter.initGoogleApiClient();
+            } else {
+                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1255 && resultCode == RESULT_OK) {
+            presenter.startLocationUpdate();
+
+        }
     }
 }

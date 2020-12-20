@@ -23,11 +23,16 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
-        <activity android:name=".ui.activity_payment_date.PaymentDateActivity"
+        <activity android:name=".ui.activity_bill_details.BillDetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             />
+        <activity
+            android:name=".ui.activity_payment_date.PaymentDateActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.activity_retrieve_bill.RetrieveBillActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -92,10 +97,9 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <service android:name=".location_service.LocationService"
-            android:stopWithTask="false"
-            />
-
+        <service
+            android:name=".location_service.LocationService"
+            android:stopWithTask="false" />
         <service
             android:name=".notifications.FirebaseNotifications"
             android:enabled="true"

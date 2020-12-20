@@ -2,6 +2,7 @@ package com.zawraapharma.services;
 
 
 import com.zawraapharma.models.AppointmentDataModel;
+import com.zawraapharma.models.CartModel;
 import com.zawraapharma.models.InvoiceDataModel;
 import com.zawraapharma.models.LogoutModel;
 import com.zawraapharma.models.PharmacyDataModel;
@@ -9,6 +10,7 @@ import com.zawraapharma.models.ResponseData;
 import com.zawraapharma.models.UserModel;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -24,7 +26,7 @@ public interface Service {
 
 
     @FormUrlEncoded
-    @POST("api/login")
+    @POST("api/update-location")
     Call<UserModel> updateLocation(@Header("Authorization") String user_token,
                                    @Field("user_id") String user_id,
                                    @Field("latitude") double latitude,
@@ -82,8 +84,13 @@ public interface Service {
 
     @GET("api/get-pharmacy-bills")
     Call<InvoiceDataModel> getPharmacyBill(@Header("Authorization") String token,
+                                           @Query("user_id") int user_id,
                                            @Query("pharmacy_id") String pharmacy_id
 
     );
+
+    @POST("api/pay-bills")
+    Call<LogoutModel> sendData(@Header("Authorization") String token,
+                               @Body CartModel cartModel);
 
 }
