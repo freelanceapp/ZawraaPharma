@@ -32,6 +32,7 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.zawraapharma.R;
 import com.zawraapharma.location_service.LocationService;
 import com.zawraapharma.models.BillModel;
+import com.zawraapharma.models.BillResponse;
 import com.zawraapharma.models.CartModel;
 import com.zawraapharma.models.InvoiceDataModel;
 import com.zawraapharma.models.LocationModel;
@@ -256,13 +257,13 @@ public class ActivityPayBillPresenter implements GoogleApiClient.ConnectionCallb
         dialog.show();
         Api.getService(Tags.base_url)
                 .sendData(userModel.getData().getToken(), cartModel)
-                .enqueue(new Callback<LogoutModel>() {
+                .enqueue(new Callback<BillResponse>() {
                     @Override
-                    public void onResponse(Call<LogoutModel> call, Response<LogoutModel> response) {
+                    public void onResponse(Call<BillResponse> call, Response<BillResponse> response) {
                         dialog.dismiss();
                         if (response.isSuccessful()) {
                             if (response.body() != null && response.body().getStatus() == 200) {
-                                view.onCartSendSuccess();
+                                view.onCartSendSuccess(response.body().getData());
 
                             } else {
                                 view.onFailed(context.getString(R.string.failed));
@@ -288,7 +289,7 @@ public class ActivityPayBillPresenter implements GoogleApiClient.ConnectionCallb
                     }
 
                     @Override
-                    public void onFailure(Call<LogoutModel> call, Throwable t) {
+                    public void onFailure(Call<BillResponse> call, Throwable t) {
                         try {
                             dialog.dismiss();
 

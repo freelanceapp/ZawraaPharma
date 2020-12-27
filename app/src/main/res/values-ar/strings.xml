@@ -54,5 +54,11 @@
     <string name="receipt_num">رقم الوصل #</string>
     <string name="print">تاكيد الطباعة</string>
     <string name="delete">حذف مع الخروج</string>
+    <string name="invoice_number">أدخل رقم الفاتورة</string>
+    <string name="bill_num_inc">رقم الفاتورة غير صحيح</string>
+    <string name="connect">إتصال</string>
+    <string name="scan">بحث</string>
+    <string name="printers">الطابعة</string>
+    <string name="open_bluetooth">من فضلك قم بفتح البلوتوث</string>
 
 </resources>

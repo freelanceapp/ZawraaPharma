@@ -3,13 +3,10 @@ package com.zawraapharma.ui.activity_pay_bill;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,24 +14,22 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.zawraapharma.R;
 import com.zawraapharma.adapters.InvoiceAdapter;
 import com.zawraapharma.databinding.ActivityPayBillBinding;
-import com.zawraapharma.databinding.ActivityPayPillBinding;
 import com.zawraapharma.language.Language;
 import com.zawraapharma.models.BillModel;
-import com.zawraapharma.models.CartModel;
+import com.zawraapharma.models.BillResponse;
 import com.zawraapharma.models.InvoiceModel;
 import com.zawraapharma.models.LocationModel;
 import com.zawraapharma.models.PharmacyModel;
 import com.zawraapharma.mvp.activity_pay_bill_mvp.ActivityPayBillPresenter;
 import com.zawraapharma.mvp.activity_pay_bill_mvp.PayBillActivityView;
-import com.zawraapharma.mvp.activity_pay_pill_mvp.ActivityPayPillPresenter;
 import com.zawraapharma.share.Common;
+import com.zawraapharma.ui.activity_bill_details.BillDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -145,8 +140,11 @@ public class PayBillActivity extends AppCompatActivity implements PayBillActivit
     }
 
     @Override
-    public void onCartSendSuccess() {
+    public void onCartSendSuccess(BillResponse.Data data) {
         Toast.makeText(this, getString(R.string.suc), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, BillDetailsActivity.class);
+        intent.putExtra("data",data);
+        startActivity(intent);
         finish();
     }
 

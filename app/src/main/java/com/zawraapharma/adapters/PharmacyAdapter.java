@@ -36,8 +36,14 @@ public class PharmacyAdapter extends RecyclerView.Adapter<PharmacyAdapter.MyHold
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        PharmacyRowBinding bankRowBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.pharmacy_row, parent, false);
-        return new MyHolder(bankRowBinding);
+        try {
+            PharmacyRowBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.pharmacy_row, parent, false);
+            return new MyHolder(binding);
+        }catch (Exception e){
+        }
+
+        return null;
+
     }
 
     @Override

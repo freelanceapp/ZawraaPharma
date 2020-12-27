@@ -54,5 +54,11 @@
     <string name="receipt_num">Receipt num #</string>
     <string name="print">Print</string>
     <string name="delete">Delete</string>
+    <string name="invoice_number">Invoice number</string>
+    <string name="bill_num_inc">Bill number is incorrect</string>
+    <string name="connect">Connect</string>
+    <string name="scan">Scan</string>
+    <string name="printers">Printers</string>
+    <string name="open_bluetooth">Please open bluetooth</string>
 
 </resources>

@@ -2,11 +2,16 @@ package com.zawraapharma.services;
 
 
 import com.zawraapharma.models.AppointmentDataModel;
+import com.zawraapharma.models.BillResponse;
 import com.zawraapharma.models.CartModel;
+import com.zawraapharma.models.CompanyDataModel;
+import com.zawraapharma.models.CompanyProductDataModel;
+import com.zawraapharma.models.DebtsDataModel;
 import com.zawraapharma.models.InvoiceDataModel;
 import com.zawraapharma.models.LogoutModel;
 import com.zawraapharma.models.PharmacyDataModel;
 import com.zawraapharma.models.ResponseData;
+import com.zawraapharma.models.RetrieveModel;
 import com.zawraapharma.models.UserModel;
 
 import retrofit2.Call;
@@ -90,7 +95,26 @@ public interface Service {
     );
 
     @POST("api/pay-bills")
-    Call<LogoutModel> sendData(@Header("Authorization") String token,
-                               @Body CartModel cartModel);
+    Call<BillResponse> sendData(@Header("Authorization") String token,
+                                @Body CartModel cartModel);
+
+    @GET("api/company-item")
+    Call<CompanyProductDataModel> getCompanyProduct(@Header("Authorization") String token,
+                                                    @Query("company_id") int company_id
+
+    );
+
+    @GET("api/companies")
+    Call<CompanyDataModel> getCompanies(@Header("Authorization") String token
+    );
+
+    @POST("api/back-bills")
+    Call<LogoutModel> retrieveBill(@Header("Authorization") String token,
+                                   @Body RetrieveModel retrieveModel);
+
+    @GET("api/get-dept-bills")
+    Call<DebtsDataModel> getDebts(@Header("Authorization") String token,
+                                  @Query("search_key") String search_key
+    );
 
 }

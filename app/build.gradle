@@ -61,4 +61,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.applandeo:material-calendar-view:1.7.0'
+    implementation 'com.facebook.react:react-native:+'
+
 }

@@ -103,7 +103,10 @@ public class PharmacyDetailsActivity extends AppCompatActivity implements OnMapR
             mMap.setTrafficEnabled(false);
             mMap.setBuildingsEnabled(false);
             mMap.setIndoorEnabled(true);
-            addMarker(new LatLng(Double.parseDouble(pharmacyModel.getLatitude()),Double.parseDouble(pharmacyModel.getLongitude())));
+            if (pharmacyModel.getLatitude()!=null&&pharmacyModel.getLongitude()!=null){
+                addMarker(new LatLng(Double.parseDouble(pharmacyModel.getLatitude()),Double.parseDouble(pharmacyModel.getLongitude())));
+
+            }
 
         }
     }
