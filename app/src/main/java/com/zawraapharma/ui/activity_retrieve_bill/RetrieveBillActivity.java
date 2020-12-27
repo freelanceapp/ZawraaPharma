@@ -97,6 +97,7 @@ public class RetrieveBillActivity extends AppCompatActivity implements RetrieveA
         });
 
         binding.imageBack.setOnClickListener(view -> finish());
+        binding.btnBack.setOnClickListener(view -> finish());
 
         binding.btnSend.setOnClickListener(view -> {
             String billNumber = binding.edtBillNumber.getText().toString().trim();

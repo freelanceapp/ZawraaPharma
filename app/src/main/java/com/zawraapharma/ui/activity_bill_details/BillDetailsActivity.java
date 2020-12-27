@@ -92,6 +92,8 @@ public class BillDetailsActivity extends AppCompatActivity {
             startActivityForResult(intent, 100);
         });
 
+        binding.llBack.setOnClickListener(view -> finish());
+
 
     }
 

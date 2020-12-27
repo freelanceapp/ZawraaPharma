@@ -26,6 +26,7 @@
             android:background="@color/colorPrimary">
 
             <LinearLayout
+                android:id="@+id/llBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -47,7 +48,9 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:text="@string/payment_receipt"
+                    />
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
 
@@ -117,6 +120,8 @@
                                     android:textColor="@color/black"
                                     android:textSize="15sp"
                                     android:text="@{model.date}"
+                                    android:gravity="start"
+                                    android:textAlignment="viewStart"
                                     />
                             </LinearLayout>
 
@@ -143,6 +148,8 @@
                                     android:textColor="@color/black"
                                     android:textSize="15sp"
                                     android:text="@{model.time}"
+                                    android:gravity="start"
+                                    android:textAlignment="viewStart"
                                     />
                             </LinearLayout>
 
@@ -168,6 +175,8 @@
                                     android:textColor="@color/black"
                                     android:textSize="15sp"
                                     android:text="@{String.valueOf(model.id)}"
+                                    android:gravity="start"
+                                    android:textAlignment="viewStart"
                                     />
                             </LinearLayout>
 
@@ -193,6 +202,8 @@
                                     android:textColor="@color/black"
                                     android:textSize="15sp"
                                     android:text="@{model.client_fk.title}"
+                                    android:gravity="start"
+                                    android:textAlignment="viewStart"
                                     />
                             </LinearLayout>
 
@@ -220,6 +231,8 @@
                                     android:textColor="@color/black"
                                     android:textSize="15sp"
                                     android:text='@{String.valueOf(model.total)}'
+                                    android:gravity="start"
+                                    android:textAlignment="viewStart"
                                     />
                             </LinearLayout>
 
@@ -246,7 +259,8 @@
                                     android:textColor="@color/black"
                                     android:textSize="15sp"
                                     android:text='@{String.valueOf(model.discount)}'
-
+                                    android:gravity="start"
+                                    android:textAlignment="viewStart"
                                     />
                             </LinearLayout>
 

@@ -61,7 +61,7 @@ public class FindPharmacyActivity extends AppCompatActivity implements FindPharm
         binding.recView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new PharmacyAdapter(pharmacyModelList, this);
         binding.recView.setAdapter(adapter);
-
+        presenter.search("");
         binding.edtSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
