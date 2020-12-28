@@ -15,7 +15,6 @@ public class PharmacyModel implements Serializable {
    private String bills_count;
    private String created_at;
    private String updated_at;
-   private String bill_code;
 
 
     public int getId() {
@@ -66,7 +65,4 @@ public class PharmacyModel implements Serializable {
         return updated_at;
     }
 
-    public String getBill_code() {
-        return bill_code;
-    }
 }

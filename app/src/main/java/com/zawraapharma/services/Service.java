@@ -62,6 +62,12 @@ public interface Service {
 
     );
 
+    @GET("api/search-pharmacy-or-bill-code")
+    Call<PharmacyDataModel> search_bill_number(@Header("Authorization") String token,
+                                               @Query("search_key") String query
+
+    );
+
     @GET("api/my-appointments")
     Call<AppointmentDataModel> getMyAppointments(@Header("Authorization") String token,
                                                  @Query("user_id") String user_id

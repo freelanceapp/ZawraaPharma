@@ -33,10 +33,13 @@ public class ActivityPayPillPresenter {
 
     public void search(String query)
     {
+        if (userModel==null){
+            return;
+        }
         view.onProgressShow();
 
         Api.getService(Tags.base_url)
-                .search(query)
+                .search_bill_number(userModel.getData().getToken(),query)
                 .enqueue(new Callback<PharmacyDataModel>() {
                     @Override
                     public void onResponse(Call<PharmacyDataModel> call, Response<PharmacyDataModel> response) {
