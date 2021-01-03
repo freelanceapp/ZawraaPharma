@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.zawraapharma.R;
 import com.zawraapharma.databinding.PharmacyRowBinding;
 import com.zawraapharma.models.PharmacyModel;
+import com.zawraapharma.ui.activity_find_pharmacy.FindPharmacyActivity;
 import com.zawraapharma.ui.activity_pay_pill.PayPillActivity;
 
 import java.util.List;
@@ -55,6 +56,9 @@ public class PharmacyAdapter extends RecyclerView.Adapter<PharmacyAdapter.MyHold
             if (activity instanceof PayPillActivity){
                 PayPillActivity payPillActivity = (PayPillActivity) activity;
                 payPillActivity.setItemData(model2);
+            }else if (activity instanceof FindPharmacyActivity){
+                FindPharmacyActivity findPharmacyActivity = (FindPharmacyActivity) activity;
+                findPharmacyActivity.setItemData(model2);
             }
         });
 

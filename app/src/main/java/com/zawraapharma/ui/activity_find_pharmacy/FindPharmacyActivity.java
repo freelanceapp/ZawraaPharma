@@ -2,6 +2,7 @@ package com.zawraapharma.ui.activity_find_pharmacy;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -28,6 +29,7 @@ import com.zawraapharma.share.Common;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import io.paperdb.Paper;
 
@@ -144,6 +146,13 @@ public class FindPharmacyActivity extends AppCompatActivity implements FindPharm
     @Override
     public void onProgressHide() {
         binding.progBar.setVisibility(View.GONE);
+
+    }
+
+    public void setItemData(PharmacyModel model) {
+        String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?q=loc:%f,%f", Double.parseDouble(model.getLatitude()),Double.parseDouble(model.getLongitude()));
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        startActivity(intent);
 
     }
 }
