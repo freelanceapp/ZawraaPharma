@@ -37,6 +37,7 @@ android {
         maven { url 'https://jitpack.io' }
 
     }
+
 }
 
 dependencies {
@@ -63,8 +64,12 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.applandeo:material-calendar-view:1.7.0'
     implementation 'com.facebook.react:react-native:+'
-    implementation(name:'SunmiV2', ext:'aar')
-    implementation project(":SunmiV2")
+   /* implementation(name:'SunmiV2', ext:'aar')
+    implementation project(":SunmiV2")*/
+    implementation 'com.sunmi:printerlibrary:1.0.7'
+    implementation 'com.sunmi:sunmiui:1.1.27'
+    //zxing to generate barcode
+    implementation files('libs/core-3.3.0.jar')
 
 
 }

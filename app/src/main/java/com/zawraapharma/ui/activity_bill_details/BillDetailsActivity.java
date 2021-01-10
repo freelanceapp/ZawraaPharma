@@ -22,7 +22,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.facebook.react.bridge.Callback;
-import com.sunmi.sunmiv2.services.SunmiPrinter;
+import com.sunmi.peripheral.printer.SunmiPrinterService;
 import com.zawraapharma.R;
 import com.zawraapharma.adapters.InvoiceAdapter2;
 import com.zawraapharma.databinding.ActivityBillDetailsBinding;
@@ -34,10 +34,15 @@ import com.zawraapharma.mvp.activity_login_presenter.ActivityLoginPresenter;
 import com.zawraapharma.preferences.Preferences;
 import com.zawraapharma.printer.Constants;
 import com.zawraapharma.printer.PrinterManager;
+import com.zawraapharma.printerUtils.BluetoothUtil;
+import com.zawraapharma.printerUtils.BytesUtil;
+import com.zawraapharma.printerUtils.ESCUtil;
+import com.zawraapharma.printerUtils.SunmiPrintHelper;
 import com.zawraapharma.ui.activity_printer_devices.PrinterDevicesActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -183,9 +188,18 @@ public class BillDetailsActivity extends AppCompatActivity {
     }
 
     private void print(Bitmap bitmap) {
-        SunmiPrinter instance = SunmiPrinter.getInstance();
+
+
+        if (!BluetoothUtil.isBlueToothPrinter) {
+            SunmiPrintHelper.getInstance().printBitmap(bitmap, 0);
+            SunmiPrintHelper.getInstance().feedPaper();
+        } else {
+            BluetoothUtil.sendData(ESCUtil.printBitmap(bitmap, 1));
+        }
+       /* SunmiPrinter instance = SunmiPrinter.getInstance();
         instance.initPrinter(this);
-        instance.printBitmap(bitmap,null);
+        instance.printBitmap(bitmap,null);*/
+
     }
 
     public static Bitmap getBitmapFromView(View view) {
