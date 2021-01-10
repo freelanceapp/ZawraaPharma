@@ -63,4 +63,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.applandeo:material-calendar-view:1.7.0'
     implementation 'com.facebook.react:react-native:+'
+    implementation(name:'SunmiV2', ext:'aar')
+    implementation project(":SunmiV2")
+
+
 }

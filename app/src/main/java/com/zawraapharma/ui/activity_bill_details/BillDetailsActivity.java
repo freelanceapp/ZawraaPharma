@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.facebook.react.bridge.Callback;
+import com.sunmi.sunmiv2.services.SunmiPrinter;
 import com.zawraapharma.R;
 import com.zawraapharma.adapters.InvoiceAdapter2;
 import com.zawraapharma.databinding.ActivityBillDetailsBinding;
@@ -88,6 +89,7 @@ public class BillDetailsActivity extends AppCompatActivity {
         adapter = new InvoiceAdapter2(billList, this);
         binding.recView.setAdapter(adapter);
         binding.btnShow.setOnClickListener(view -> {
+            checkWritePermission();
             /*Intent intent = new Intent(this, PrinterDevicesActivity.class);
             startActivityForResult(intent, 100);*/
         });
@@ -100,6 +102,7 @@ public class BillDetailsActivity extends AppCompatActivity {
     private void checkWritePermission(){
         if (ContextCompat.checkSelfPermission(this,write_permission)== PackageManager.PERMISSION_GRANTED){
             Bitmap bitmap = getBitmapFromView(binding.llBill);
+            print(bitmap);
             /*printerManager.printImage(this, bitmap, args -> {
 
             });*/
@@ -164,17 +167,25 @@ public class BillDetailsActivity extends AppCompatActivity {
         if (requestCode==200&&grantResults.length>0){
             if (grantResults[0]==PackageManager.PERMISSION_GRANTED){
                 Bitmap bitmap = getBitmapFromView(binding.llBill);
-                printerManager.printImage(this, bitmap, new Callback() {
+                print(bitmap);
+
+                /* printerManager.printImage(this, bitmap, new Callback() {
                     @Override
                     public void invoke(Object... args) {
 
                     }
-                });
+                });*/
 
             }else {
                 Toast.makeText(this, "Access storage in your device denied", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void print(Bitmap bitmap) {
+        SunmiPrinter instance = SunmiPrinter.getInstance();
+        instance.initPrinter(this);
+        instance.printBitmap(bitmap,null);
     }
 
     public static Bitmap getBitmapFromView(View view) {
