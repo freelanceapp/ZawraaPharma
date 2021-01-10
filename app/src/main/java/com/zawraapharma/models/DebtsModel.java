@@ -9,16 +9,16 @@ public class DebtsModel implements Serializable {
     private String user_id;
     private int company_id;
     private String date;
-    private int total;
-    private int debt_amount;
-    private int paid;
-    private int remaining;
+    private double total;
+    private double debt_amount;
+    private double paid;
+    private double remaining;
     private String status;
     private String is_exceed_90_days;
     private String notes;
     private String created_at;
     private String updated_at;
-    private ClientFk client_fk;
+    private PharmacyModel client_fk;
 
     public int getId() {
         return id;
@@ -44,19 +44,19 @@ public class DebtsModel implements Serializable {
         return date;
     }
 
-    public int getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public int getDebt_amount() {
+    public double getDebt_amount() {
         return debt_amount;
     }
 
-    public int getPaid() {
+    public double getPaid() {
         return paid;
     }
 
-    public int getRemaining() {
+    public double getRemaining() {
         return remaining;
     }
 
@@ -80,7 +80,7 @@ public class DebtsModel implements Serializable {
         return updated_at;
     }
 
-    public ClientFk getClient_fk() {
+    public PharmacyModel getClient_fk() {
         return client_fk;
     }
 
@@ -92,7 +92,7 @@ public class DebtsModel implements Serializable {
         }
     }
 
-    public static class ClientFk {
+    public static class ClientFk implements Serializable{
         private int id;
         private String title;
         private String category_title;

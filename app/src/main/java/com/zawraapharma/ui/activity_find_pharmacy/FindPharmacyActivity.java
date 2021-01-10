@@ -150,9 +150,14 @@ public class FindPharmacyActivity extends AppCompatActivity implements FindPharm
     }
 
     public void setItemData(PharmacyModel model) {
-        String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?q=loc:%f,%f", Double.parseDouble(model.getLatitude()),Double.parseDouble(model.getLongitude()));
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-        startActivity(intent);
+        if (model.getLatitude()!=null&&model.getLongitude()!=null){
+            String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?q=loc:%f,%f", Double.parseDouble(model.getLatitude()),Double.parseDouble(model.getLongitude()));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+            startActivity(intent);
+        }else {
+            Toast.makeText(this, "العنوان غير محدد", Toast.LENGTH_SHORT).show();
+        }
+       
 
     }
 }

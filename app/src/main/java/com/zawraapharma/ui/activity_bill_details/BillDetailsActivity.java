@@ -88,8 +88,8 @@ public class BillDetailsActivity extends AppCompatActivity {
         adapter = new InvoiceAdapter2(billList, this);
         binding.recView.setAdapter(adapter);
         binding.btnShow.setOnClickListener(view -> {
-            Intent intent = new Intent(this, PrinterDevicesActivity.class);
-            startActivityForResult(intent, 100);
+            /*Intent intent = new Intent(this, PrinterDevicesActivity.class);
+            startActivityForResult(intent, 100);*/
         });
 
         binding.llBack.setOnClickListener(view -> finish());
@@ -100,9 +100,9 @@ public class BillDetailsActivity extends AppCompatActivity {
     private void checkWritePermission(){
         if (ContextCompat.checkSelfPermission(this,write_permission)== PackageManager.PERMISSION_GRANTED){
             Bitmap bitmap = getBitmapFromView(binding.llBill);
-            printerManager.printImage(this, bitmap, args -> {
+            /*printerManager.printImage(this, bitmap, args -> {
 
-            });
+            });*/
         }else {
             String [] permission = {write_permission};
             ActivityCompat.requestPermissions(this,permission,200);

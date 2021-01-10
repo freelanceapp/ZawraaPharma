@@ -60,5 +60,6 @@
     <string name="scan">بحث</string>
     <string name="printers">الطابعة</string>
     <string name="open_bluetooth">من فضلك قم بفتح البلوتوث</string>
+    <string name="code">#الكود</string>
 
 </resources>

@@ -6,7 +6,7 @@ public class PharmacyModel implements Serializable {
    private int id;
    private String title;
    private String category_title;
-   private int balance;
+   private double balance;
    private String address;
    private String latitude;
    private String longitude;
@@ -29,7 +29,7 @@ public class PharmacyModel implements Serializable {
         return category_title;
     }
 
-    public int getBalance() {
+    public double getBalance() {
         return balance;
     }
 

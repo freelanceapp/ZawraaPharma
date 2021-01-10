@@ -60,5 +60,6 @@
     <string name="scan">Scan</string>
     <string name="printers">Printers</string>
     <string name="open_bluetooth">Please open bluetooth</string>
+    <string name="code">#code</string>
 
 </resources>

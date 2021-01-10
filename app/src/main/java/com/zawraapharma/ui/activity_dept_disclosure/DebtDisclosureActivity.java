@@ -1,6 +1,7 @@
 package com.zawraapharma.ui.activity_dept_disclosure;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -22,6 +23,7 @@ import com.zawraapharma.mvp.activity_calender_mvp.CalenderActivityView;
 import com.zawraapharma.mvp.activity_debt_disclosure_mvp.ActivityDebtDisclosurePresenter;
 import com.zawraapharma.mvp.activity_debt_disclosure_mvp.DebtDisclosureActivityView;
 import com.zawraapharma.share.Common;
+import com.zawraapharma.ui.activity_pharmacy_details.PharmacyDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,4 +129,9 @@ public class DebtDisclosureActivity extends AppCompatActivity implements DebtDis
     }
 
 
+    public void setItemData(DebtsModel model) {
+        Intent intent = new Intent(this, PharmacyDetailsActivity.class);
+        intent.putExtra("data",model.getClient_fk());
+        startActivity(intent);
+    }
 }

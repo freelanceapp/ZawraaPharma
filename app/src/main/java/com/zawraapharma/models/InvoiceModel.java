@@ -9,10 +9,10 @@ public class InvoiceModel implements Serializable {
     private String user_id;
     private int company_id;
     private String date;
-    private int total;
-    private int debt_amount;
-    private int paid;
-    private int remaining;
+    private double total;
+    private double debt_amount;
+    private double paid;
+    private double remaining;
     private String status;
     private String is_exceed_90_days;
     private String notes;
@@ -46,19 +46,19 @@ public class InvoiceModel implements Serializable {
         return date;
     }
 
-    public int getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public int getDebt_amount() {
+    public double getDebt_amount() {
         return debt_amount;
     }
 
-    public int getPaid() {
+    public double getPaid() {
         return paid;
     }
 
-    public int getRemaining() {
+    public double getRemaining() {
         return remaining;
     }
 
