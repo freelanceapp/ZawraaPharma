@@ -21,7 +21,7 @@ public class BillResponse implements Serializable {
         private int user_id;
         private String date;
         private String time;
-        private int total;
+        private double total;
         private double discount;
         private double total_after_discount;
         private String is_paid_to_admin_at;
@@ -52,7 +52,7 @@ public class BillResponse implements Serializable {
             return time;
         }
 
-        public int getTotal() {
+        public double getTotal() {
             return total;
         }
 
@@ -132,10 +132,10 @@ public class BillResponse implements Serializable {
             private String user_id;
             private int company_id;
             private String date;
-            private int total;
-            private int debt_amount;
-            private int paid;
-            private int remaining;
+            private double total;
+            private double debt_amount;
+            private double paid;
+            private double remaining;
             private String status;
             private String is_exceed_90_days;
             private String notes;
@@ -167,19 +167,19 @@ public class BillResponse implements Serializable {
                 return date;
             }
 
-            public int getTotal() {
+            public double getTotal() {
                 return total;
             }
 
-            public int getDebt_amount() {
+            public double getDebt_amount() {
                 return debt_amount;
             }
 
-            public int getPaid() {
+            public double getPaid() {
                 return paid;
             }
 
-            public int getRemaining() {
+            public double getRemaining() {
                 return remaining;
             }
 
@@ -214,7 +214,7 @@ public class BillResponse implements Serializable {
             private int bill_id;
             private int client_id;
             private int user_id;
-            private int paid_amount;
+            private double paid_amount;
             private String date;
             private String created_at;
             private String updated_at;
@@ -240,7 +240,7 @@ public class BillResponse implements Serializable {
                 return user_id;
             }
 
-            public int getPaid_amount() {
+            public double getPaid_amount() {
                 return paid_amount;
             }
 
