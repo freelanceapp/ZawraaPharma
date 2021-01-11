@@ -168,7 +168,7 @@ public class PayBillActivity extends AppCompatActivity implements PayBillActivit
         int pos = getBillPos(String.valueOf(model.getId()));
         if (pos==-1){
             if (!amount.equals("0")){
-                BillModel billModel = new BillModel(String.valueOf(model.getId()),amount);
+                BillModel billModel = new BillModel(String.valueOf(model.getId()),amount,model.getCode());
                 paidBillList.add(billModel);
             }
         }else {

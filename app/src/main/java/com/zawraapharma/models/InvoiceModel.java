@@ -1,5 +1,7 @@
 package com.zawraapharma.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class InvoiceModel implements Serializable {
@@ -12,6 +14,7 @@ public class InvoiceModel implements Serializable {
     private double total;
     private double debt_amount;
     private double paid;
+    @SerializedName("remaining_denar")
     private double remaining;
     private String status;
     private String is_exceed_90_days;

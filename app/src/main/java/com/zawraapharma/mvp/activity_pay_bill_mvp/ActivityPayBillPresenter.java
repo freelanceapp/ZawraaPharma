@@ -238,7 +238,7 @@ public class ActivityPayBillPresenter implements GoogleApiClient.ConnectionCallb
 
         List<CartModel.BillData> billDataList = new ArrayList<>();
         for (BillModel billModel : paidBillList) {
-            CartModel.BillData billData = new CartModel.BillData(billModel.getBill_id(), billModel.getPaid_amount());
+            CartModel.BillData billData = new CartModel.BillData(billModel.getBill_id(), billModel.getPaid_amount(),billModel.getCode());
             billDataList.add(billData);
         }
         CartModel cartModel = new CartModel(String.valueOf(userModel.getData().getId()), pharmacy_id, total, discount, total_after_discount, note, String.valueOf(locationModel.getLat()), String.valueOf(locationModel.getLng()), billDataList);
